@@ -1,4 +1,123 @@
 Concetto di base : 
 
-Una variabile normale (esempio : int x) è una scatola che contiene un valore (esempio 5) . Un puntatore è una variabile che 
-contiene un indirizzo di memoria (esempio 0x0027FEA0) 
+Una variabile normale (esempio : int x) è una scatola che contiene un valore (esempio 5).
+Un puntatore è una variabile che contiene un indirizzo di memoria (esempio 0x0027FEA0) 
+
+Operatori fondamentali 
+
+Per usare i puntatori si deve sapere usare questi 2 simboli , uno fa l'opposto dell'altro : 
+
+1. "&" (Address-of) "Dammi l'indirizzo" . Si usa su una variabile per ottenere la sua posizione in memoria 
+    &x -> mi dara l'indirizzo di x
+2. "*" (Dereferenziazione) "Vai all'indirizzo" . Si usa su un puntatore per leggere o modificare il valore che sta a quel indirizzo
+
+& : Da variabile --> a indirizzo
+* : Da indirizzo --> a valore
+
+Dichiarazione e Inizializzazione 
+
+Quando si dichiara un puntatore si deve dire a che tipo è l'oggetto a cui si puntera Esempio :
+{
+    int x = 5; // x contiene il valore 5
+    int* ptr = &x; // ptr punta all'indirizzo di memoria di x 
+} 
+
+Come si usano :  
+
+1. Cambiare indirizzo (dove punta)  : ptr = &y (ora ptr non punta piu all'indirizzo di memoria di x ma a quello di y)
+2. Cambiare il valore puntato : *ptr = 10 (ora che succede all'indirizzo di memoria in ptr vai e scrivi 10 , quindi se ptr puntava a x ora anche x vale 10)
+
+Differenza con i riferimenti 
+
+puntatori e riferimenti sono molto simili ma hanno delle differenze vitali : 
+
+-Riferimenti sono degli alias (è come un altro nome per una variabile , come un soprannome) , il contenuto all'interno non puo essere cambiato , e il riferimento va subito inizializzato
+-Puntatore è un oggetto a se stante . Puo essere cambiato sia il valore che l'indirizzo di memoria durante il programma e può anche puntare a nulla
+
+Piccolo Esercizio : 
+
+{
+    int a = 10;   //variabile a contiene 10
+    int* p = &a;  //p punta all'indirizzo di memoria di a 
+    *p = 20;      //questa la parte cruciale , l'indirizzo di memoria è sempre lo stesso , cio significa che anche a ha cambiato valore
+    cout<<a; //il programma stampa 20
+}
+
+Questo esercizio mostra come un puntatore *p puo andare a modificare il valore di un altra variabile perche modifica direttamente la cella di memoria
+
+Puntatori Nulli 
+
+i nullpointer sono puntatori che puntano al nulla , è un valore speciale , come si usa :
+- si usa la parola nullptr 
+- si utilizza quando ancora non si ha un indirizzo pronto , o se si vuole dichiare un puntatore si deve sempre inizializzare a nullptr : 
+
+{
+    int* ptr = nullptr; 
+}
+
+Non si dereferenzia mai un puntatore nullo , il programma crasha , è come aprire una porta che non esiste 
+
+inoltre nullptr è utile per fare controlli , verificare se una variabile contiene qualcosa : 
+
+{
+    if(ptr==nullptr){
+        cout<<"ptr non contiene nulla";
+    }else{
+        cout<<*p<<endl;
+    }
+}
+
+Puntatori e costanti : 
+
+Immagina * come una barriera : 
+
+const a sinistra di * : const int* ptr --> il valore è costante , percio non puo cambiare il valore nella scatola , ma si puo spostare il puntatore su un altra scatola
+const a destra di * : int* const ptr --> il puntatore è costante , cioè il puntatore è incollato alla stessa scatola e non puo cambiare , ma si puo cambiare cosa ce dentro quella scatola
+
+Distinguiamo quindi 3 casistiche : 
+
+1. Puntatore a valore costante (const int* ptr) : 
+
+Si usa quando si vuole guardare ma non toccare ; 
+
+Si puo cambiare l'indirizzo (ptr = &y),  ma non si puo cambiare il valore (X *ptr = 7)
+
+2. Puntatore costante (int* const ptr) : 
+
+Si comporta come un riferimento , una volta che punta non si smuove
+
+Si puo cambiare il valore (*ptr = 7), ma non puo cambiare l'indirizzo a cui punta (X ptr = &y)
+
+3 . Puntatore costante a valore costante 
+
+è tutto bloccato , il massimo della restrizione , ne si cambia valore ne si cambia indirizzo 
+
+
+Passaggio dei dati alle funzioni : 
+
+Esistono 3 vie : 
+
+1. Per valore (Pass by value) : la funzione crea una copia del dato , se modifichi la copia , l'originale rimane intatto. Lento per oggetti di grandi dimensioni perche deve duplicare tutto 
+2. Per riferimento (Pass by reference) : la funzione usa un alias (&) della variabile originale , non c'è una copia , è molto veloce e le modifiche sono immediate sull'originale , è la scelta standard di c++
+3. Per indirizzo (Pass by address) : la funzione riceve l'indirizzo di memoria tramite un puntatore . metodo flessibile ma pericoloso 
+
+Focus sul passaggio per Indirizzo 
+
+é basato sui puntatori , infatti non si passa un oggetto ma il suo indirizzo : 
+
+1 Sintassi : 
+
+- Nella funzione il parametro è un puntatore --> void func(int* ptr){}
+- Nella chiamata si passa l'indirizzo attraverso l'operatore & --> func(&x);
+- Cosa succede : l'indirizzo viene copiato nel puntatore della funzione . La funzione dereferenzia il puntatore per agire sulla variabile originale
+
+2 Vantaggi e Scenari :
+
+- Non fa una copia di oggetti grandi , copia solo l'indirizzo (8 byte)
+- Permette alla funzione di modificare la variabile del chiamante 
+- Si puo usare nullptr per dire alla funzione che quel dato non è disponibile
+
+
+Ritorno dei dati 
+
+
