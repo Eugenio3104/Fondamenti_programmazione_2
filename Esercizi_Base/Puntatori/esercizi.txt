@@ -1,0 +1,89 @@
+Esercitazione C++: puntatori
+
+PARTE 1: Fondamentali (Base)
+Esercizio 1: Operatori & e * Dato il seguente codice, scrivi cosa viene stampato a console:
+
+
+int valore = 42;
+int* ptr = &valore;
+*ptr = 100;
+std::cout << valore << std::endl;
+
+
+Esercizio 2:
+
+ Dichiarazione e Tipi Quale delle seguenti righe di codice è corretta? Spiega perché le altre falliscono.
+
+int* p = 5;
+
+double d = 3.14; int* p = &d;
+
+int x = 10; int* p = &x;
+
+Esercizio 3: 
+Puntatori Nulli Scrivi una funzione chiamata stampaSeValido che accetti un puntatore a intero (int*). La funzione deve stampare il valore puntato solo se il puntatore non è nullo, altrimenti deve stampare "Puntatore non valido".
+
+Esercizio 4:
+ Modifica tramite funzione (Passaggio per Indirizzo) Crea una funzione azzera(int* ptr) che imposti a 0 il valore della variabile passata dall'esterno. Testa la funzione nel main verificando che la variabile originale sia effettivamente cambiata.
+
+Esercizio 5:
+ Sintassi delle Costanti Dichiara:
+
+Un puntatore a un intero costante (non puoi cambiare il valore).
+
+Un puntatore costante a un intero (non puoi cambiare l'indirizzo).
+
+Un puntatore costante a un intero costante (tutto bloccato).
+
+PARTE 2
+Esercizio 6: 
+
+Il Ritorno Pericoloso Cosa c'è di sbagliato in questa funzione? Quale sarà il comportamento del programma?
+
+
+int* creaVariabile() {
+    int x = 10;
+    return &x;
+}
+Esercizio 7: 
+
+Riferimento vs Puntatore (Binding) Osserva il codice e rispondi: il valore di b cambierà alla fine?
+
+
+int a = 10;
+int b = 20;
+int* ptr = &a;
+ptr = &b;
+*ptr = 50;
+Esercizio 8:
+
+ La trappola di auto Data la funzione const int& getValore(), cosa succede in questo frammento? x è un riferimento o una copia?
+
+
+auto x = getValore();
+x = 100; // È permesso? Modifica l'originale?
+Esercizio 9: 
+
+Riferimento a Puntatore Qual è l'output di questo programma? (Ragiona sul passaggio per valore del puntatore).
+
+
+void reset(int* p) {
+    p = nullptr;
+}
+
+int main() {
+    int x = 5;
+    int* ptr = &x;
+    reset(ptr);
+    if (ptr == nullptr) std::cout << "Nullo";
+    else std::cout << "Non nullo";
+}
+Esercizio 10:
+
+ Low-level vs Top-level Const Dato questo puntatore: const int* const p = &x; Quali delle seguenti operazioni generano un errore di compilazione?
+
+p = &y;
+
+*p = 10;
+
+int z = *p;
