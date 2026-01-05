@@ -1,0 +1,4 @@
+Concetto di base : 
+
+Una variabile normale (esempio : int x) è una scatola che contiene un valore (esempio 5) . Un puntatore è una variabile che 
+contiene un indirizzo di memoria (esempio 0x0027FEA0) 
