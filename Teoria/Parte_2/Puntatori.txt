@@ -120,4 +120,28 @@ Focus sul passaggio per Indirizzo
 
 Ritorno dei dati 
 
+Come nel passaggio anche quando si returna qualcosa c++ normalmente crea una copia . Se si restiuisce un oggetto grande questo puo rallentare il programma
+
+Ritorno per riferimento : 
+
+Restituisce un alias dell'oggetto originale invece di copiarlo . Molto efficiente , sintassi : const string& getName(){}
+
+Non si restiuisce mai un riferimento a una variabile locale , le variabili locali nascono e muoiono nella funzione 
+
+è sicuro quindi usare il ritorno per riferimento se si usa una variabile statica , quando si restituisce una parametro già passato alla funzione per riferimento 
+
+Ritorno per Indirizzo : 
+
+funziona alla stessa maniera ma al posto di returnare un riferimento returna un puntatore 
+
+puo returnare nullptr se non trova quello che cerca , quindi si ci deve ricordarsi sempre di fare il controllo (if(ptr!=nullptr))
+
+Il comportamento di auto (Type Deduction)
+Quando usi auto per farti aiutare dal compilatore, lui segue regole specifiche che possono "tradire":
+
+auto ignora i riferimenti: Se una funzione restituisce int&, scrivendo auto x = func();, x sarà un int (una copia), non un riferimento. Per avere il riferimento devi scrivere auto& x.
+
+auto ignora il const di alto livello: Se hai const int x, scrivendo auto y = x;, y sarà un int non costante.
+
+auto e i puntatori: Invece auto non ignora i puntatori. Se passi un int*, auto deduce correttamente int*. Per chiarezza è però consigliato usare auto*.
 
