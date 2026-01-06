@@ -1,0 +1,59 @@
+Stringhe come array di char 
+
+L'Anatomia di una Stringa 
+Ogni volta che scrivi una stringa tra virgolette, come "Hello", 
+il compilatore crea un array. La cosa fondamentale da ricordare è che la dimensione dell'array è sempre n+1.
+{
+    char str[] { "Alex" }; // Il tipo è char[5], non char[4]!
+}
+
+Input e Sicurezza: La trappola di std::cin
+Uno dei pericoli maggiori è leggere l'input dell'utente in un array di caratteri fisso.
+
+Il problema: Se dichiari char buffer[10] e l'utente scrive "Incredibile", superi i limiti dell'array. Questo è un Buffer Overflow, un gravissimo problema di sicurezza che può sovrascrivere variabili vicine o permettere attacchi hacker.
+
+La soluzione moderna: Usa cin.getline().
+
+Manipolazione: strlen() vs std::size()
+È vitale capire la differenza tra la dimensione del "contenitore" e la lunghezza del "contenuto":
+
+{
+    char str[100] { "Mela" };
+
+    std::size(str);   // Restituisce 100 (la dimensione dell'array)
+    std::strlen(str); // Restituisce 4 (conta i caratteri fino al \0)
+
+}
+n.b : strlen() è più lenta perché deve fisicamente scorrere l'array ogni volta per contare i caratteri.
+
+Mai usare l'operatore = per copiare
+
+{
+    char str1[] { "Ciao" };
+    char str2[5];
+
+    str2 = str1; // ERRORE DI COMPILAZIONE!
+}
+
+Gli array in stile C non possono essere assegnati dopo la creazione. 
+Per copiare una stringa dentro un'altra devi usare una funzione apposita (come std::strcpy) o, meglio ancora, passare a std::string.
+
+Il confronto non è quello che sembra
+Se provi a confrontare due stringhe C con ==, non stai confrontando il testo, ma i loro indirizzi di memoria.
+
+{
+    char s1[] { "Mela" };
+    char s2[] { "Mela" };
+
+    if (s1 == s2) { 
+        // Questo sarà quasi sempre FALSO!
+        // Perché s1 e s2 si trovano in due posti diversi della RAM.
+    }
+}
+
+Le virgolette doppie vs singole
+È una distinzione fondamentale in C++:
+
+Virgolette singole ('A'): Indicano un singolo carattere (tipo char). Occupa 1 byte.
+
+Virgolette doppie ("A"): Indicano una stringa (array di caratteri). Occupa 2 byte (la 'A' + il \0).
