@@ -17,4 +17,6 @@ int main(){
     int* ptr2 = &x;
     stampaSeValido(ptr2);
 
+    return 0;
+
 }

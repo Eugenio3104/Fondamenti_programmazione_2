@@ -17,4 +17,6 @@ int main(){
     int* ptr = &x;
     cout<<"il valore di x dopo : "<<*azzera(ptr)<<endl;
 
+    return 0;
+
 }

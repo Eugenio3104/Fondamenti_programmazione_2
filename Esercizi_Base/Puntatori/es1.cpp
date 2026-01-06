@@ -12,4 +12,5 @@ int main(){
 
     cout<<valore<<endl; // quindi qua stampa 100
 
+    return 0;
 }

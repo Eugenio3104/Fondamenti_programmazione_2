@@ -15,4 +15,5 @@ int main(){
     *ptr2 = 20; //posso cambiare il valore 
 
     const int* const ptr3 = &x; //non posso ne cambiare il valore ne la scatola 
+    return 0;
 }
