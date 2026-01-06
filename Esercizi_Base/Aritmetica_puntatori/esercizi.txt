@@ -1,0 +1,62 @@
+(ptr + 2)
+
+Esercizio 2: Dereferenziazione e Somma Cosa stampa questo codice? Spiega la differenza tra le due operazioni.
+
+C++
+
+int numeri[] = {10, 20, 30};
+int* p = numeri;
+std::cout << *(p + 1) << std::endl;
+std::cout << *p + 1 << std::endl;
+Esercizio 3: Incremento del Puntatore Dato l'array char parola[] = "Pointer"; e il puntatore char* p = parola;. Scrivi i passaggi per far sì che il puntatore p punti alla lettera 'n'. Usa l'operatore di incremento ++.
+
+Esercizio 4: Sottrazione tra Puntatori Dato il seguente codice, calcola il valore della variabile distanza:
+
+C++
+
+double misure[] = {1.1, 2.2, 3.3, 4.4, 5.5};
+double* inizio = &misure[0];
+double* fine = &misure[4];
+auto distanza = fine - inizio;
+Qual è il tipo di dato della variabile distanza?
+
+Esercizio 5: Scansione Array con Puntatori Scrivi un ciclo for che stampi tutti gli elementi di un array int arr[3] = {1, 2, 3} senza usare l'indice i (quindi senza arr[i]), ma usando solo un puntatore che viene incrementato ad ogni iterazione.
+
+PARTE 2: Esercizi a "Trabocchetto" (Logica)
+Esercizio 6: L'ordine degli Operatori Dato int arr[] = {10, 20, 30}; int* p = arr;, cosa succede dopo l'esecuzione di questa riga? Qual è il valore di *p e quale quello dell'array?
+
+C++
+
+*p++ = 99;
+Esercizio 7: Commutatività dell'Indice Prova a compilare ed eseguire questo codice. Perché funziona? Cosa viene stampato?
+
+C++
+
+int segreto[] = {1, 2, 3, 4, 5};
+std::cout << 3[segreto] << std::endl;
+Indizio: pensa alla traduzione che il compilatore fa delle parentesi quadre.
+
+Esercizio 8: Aritmetica su Puntatori Void Cosa succede se provi a eseguire questo codice? Perché il compilatore genera un errore?
+
+C++
+
+int x = 10;
+void* vPtr = &x;
+vPtr = vPtr + 1; 
+Esercizio 9: Il limite dell'Array (One-past-the-end) Analizza questo ciclo. È tecnicamente corretto secondo lo standard C++? Perché si usa arr + 5 se l'ultimo indice valido è 4?
+
+C++
+
+int arr[5] = {1, 2, 3, 4, 5};
+for (int* p = arr; p < (arr + 5); ++p) {
+    std::cout << *p << " ";
+}
+Esercizio 10: Sottrazione e Tipi Diversi Cosa succede se provi a sottrarre due puntatori che puntano a variabili diverse non appartenenti allo stesso array?
+
+C++
+
+int a = 10;
+int b = 20;
+int* p1 = &a;
+int* p2 = &b;
+auto diff = p2 - p1; // È un'operazione sicura?

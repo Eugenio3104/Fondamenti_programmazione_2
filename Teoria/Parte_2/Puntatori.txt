@@ -145,3 +145,78 @@ auto ignora il const di alto livello: Se hai const int x, scrivendo auto y = x;,
 
 auto e i puntatori: Invece auto non ignora i puntatori. Se passi un int*, auto deduce correttamente int*. Per chiarezza è però consigliato usare auto*.
 
+
+Aritmetica dei puntatori 
+
+in c++ sommare 1 a un puntatore non significa aggiungere un byte all'indirizzo , ma spostarsi all'oggetto successivo . 
+
+se ptr punta a un intero (4 byte) , allora ptr + 1 sposta l'indirizzo di 4 byte 
+
+Operatore [] 
+
+Quando noi scriviamo arr[n] in realtà il compilatore lo traduce letteralemnte in *(arr+n)
+-prende l'indirizzo di arr
+-sposta il puntatore avanti di n posizioni 
+-dereferenzia per ottenere il valore 
+
+Gli indici degli array non sono posizioni assoulti ma distanze dal punto di vista in cui si trova il puntatore 
+
+se il puntatore punta all'inizio dell'array , ptr[2] è il terzo elemento
+se il puntatore punta a meta array , ptr[-1] è l'elemento precedente 
+
+{
+    const int arr[] { 9, 8, 7, 6, 5 };
+    const int* ptr = &arr[3] ; // punta al 6
+
+    std::cout << ptr[1];  // Stampa 5 (il prossimo rispetto a 6)
+    std::cout << ptr[-1]; // Stampa 7 (il precedente rispetto a 6)
+}
+
+Attraversare un array
+L'aritmetica dei puntatori è il modo standard per scorrere i dati. Si definiscono due "paletti":
+
+Begin: Punta al primo elemento.
+
+End: Punta alla posizione subito dopo l'ultimo elemento (one-past-the-end).
+
+{
+    for (; begin != end; ++begin) {
+        std::cout << *begin; 
+    }
+}
+
+regole di sicurezza : 
+L'aritmetica dei puntatori è "pericolosa" perché il C++ non controlla se stai uscendo dai confini dell'array.
+
+Validità: Puoi calcolare un indirizzo che va dall'inizio dell'array fino alla posizione "one-past-the-end". Oltrepassare questi limiti è Undefined Behavior.
+
+Uso degli indici: Usa arr[i] quando parti dall'inizio (è più leggibile). Usa l'aritmetica dei puntatori (ptr + n) solo per spostamenti relativi o per algoritmi di ricerca.
+
+Non dereferenziare l'End: Il puntatore end è utilissimo per i confronti, ma se provi a fare *end il programma crasherà o leggerà dati casuali.
+
+Sottrazione tra puntatori (Pointer Differencing)
+Così come puoi sommare un intero a un puntatore, puoi sottrarre due puntatori tra loro.
+
+Cosa restituisce: Non il numero di byte, ma il numero di oggetti che intercorrono tra i due indirizzi.
+
+{
+    int arr[]{ 10, 20, 30, 40, 50 };
+    int* ptr1{ &arr[0] };
+    int* ptr2{ &arr[3] };
+
+    int distanza = ptr2 - ptr1; // Restituisce 3 (non 12 byte!)
+}
+
+Operatori di Confronto
+Puoi usare gli operatori relazionali (<, >, <=, >=, ==, !=) sui puntatori.
+
+Utilizzo: È utilissimo nei cicli per capire se un puntatore "di scansione" ha superato un certo limite o se due puntatori puntano allo stesso elemento.
+
+Attenzione: Il confronto ha senso solo se entrambi i puntatori puntano allo stesso array. Confrontare puntatori a variabili separate è tecnicamente "comportamento indefinito"
+
+Aritmetica e tipi const
+Le regole dei puntatori costanti si applicano anche qui:
+
+Se hai un const int* ptr, puoi usare l'aritmetica (ptr + 1) per spostarti, perché stai cambiando l'indirizzo memorizzato nel puntatore, non il valore puntato.
+
+Se hai un int* const ptr, l'aritmetica dei puntatori (come ++ptr) fallirà, perché il puntatore stesso è bloccato e non può cambiare l'indirizzo che contiene.

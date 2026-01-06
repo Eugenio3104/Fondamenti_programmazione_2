@@ -35,3 +35,44 @@ i 2 pericoli quando si usa la memoria dinamica :
 2 Memory Leak (problema piu importante) : si verifica quando si perde l'indirizzo di memoria allocata prima di averla liberata , altre cause possono essere riassegnare un puntatore senza aver liberato quello vecchio 
   l'effetto comune è che la ram si consuma sempre di piu finche rallenta e poi crasha  , percio si segue LA REGOLA D'ORO
 
+
+Array e Memoria dinamica 
+
+gli array la dimensione viene decisa "mentre si scrive il codice" . con allocazione dinamica invece si puo decidere la grandezza mentre il programma è in esecuzione
+
+Stack vs Heap: Dove vive l'array?
+Per capire perché gli array dinamici sono diversi, dobbiamo immaginare la memoria del computer divisa in due grandi zone:
+
+Lo Stack: Qui vivono gli array fissi. È una memoria molto veloce ma piccola. Se provi a creare un array di un milione di interi qui, il programma crasha (Stack Overflow).
+
+L'Heap (o Free Store): Qui vivono gli array dinamici. È una memoria vastissima. Puoi allocare milioni di elementi senza problemi.
+
+Creazione: L'operatore new[]
+Per creare un array nell'Heap, usiamo new[]. Il risultato non è un oggetto array, ma un puntatore che punta al primo elemento.
+
+{
+    std::size_t length;
+    std::cin >> length; // L'utente decide la dimensione!
+
+    int* array = new int[length]; // Alloca nell'Heap e azzera tutto
+}
+
+Distruzione: L'operatore delete[]
+Questa è la parte dove molti sbagliano. La memoria nell'Heap non si pulisce da sola. Se chiudi la funzione senza liberarla,
+avrai un Memory Leak (spreco di memoria).
+
+Devi usare esplicitamente delete[].
+
+{
+    delete[] array; // Libera la memoria dell'intero array
+}
+
+Il limite: Non si possono "ridimensionare"
+Anche se sono dinamici, gli array creati con new[] hanno una dimensione fissa una volta nati.
+Se hai creato un array di 5 posti e te ne serve un sesto, non puoi semplicemente "allungarlo". Devi:
+
+Creare un nuovo array più grande.
+
+Copiare i dati dal vecchio al nuovo.
+
+Cancellare il vecchio array.

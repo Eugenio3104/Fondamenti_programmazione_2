@@ -1,0 +1,22 @@
+Memoria Dinamica e Array Dinamici
+Esercizi di Base
+Allocazione Semplice: Scrivi un programma che chieda all'utente una dimensione n, allochi dinamicamente un array di n interi, lo riempia con i primi n numeri pari e poi liberi la memoria.
+
+Media Mobile: Alloca dinamicamente un array di double basato sull'input dell'utente. Calcola la media dei valori inseriti e stampala, ricordandoti di gestire il deallocamento.
+
+Inizializzazione Uniforme: Crea un array dinamico di 5 interi inizializzandoli direttamente con la lista {10, 20, 30, 40, 50} usando la sintassi C++11.
+
+Copia di Array: Scrivi una funzione che prenda un array dinamico e la sua dimensione, ne crei una copia esatta in un nuovo blocco di memoria dinamica e restituisca il puntatore al nuovo array.
+
+Verifica Nullptr: Scrivi un frammento di codice che alloca un array dinamico, ma prima di usarlo controlla se il puntatore è valido (non nullo) e, dopo il delete[], imposta il puntatore a nullptr.
+
+Esercizi "Trabochetto"
+Il Killer della Memoria: Cosa succede se allochi un array con new int[10] ma lo deallochi con delete ptr (senza parentesi quadre)? Spiega il rischio tecnico.
+
+Dangling Pointer: Scrivi una funzione che alloca un array locale, lo riempie e restituisce il puntatore. Spiega perché il programma chiamante esploderà quando proverà a leggere i dati.
+
+Il finto ridimensionamento: Prova a "espandere" un array dinamico di 5 elementi a 10 elementi senza creare un nuovo array. Perché il compilatore non te lo permette e come devi procedere correttamente?
+
+Memory Leak nel Loop: Scrivi un ciclo for che alloca un array dinamico ad ogni iterazione ma "dimentica" di deallocarlo. Calcola quanta memoria viene persa dopo 1000 iterazioni se ogni array è di 1000 int.
+
+La dimensione fantasma: Alloca un array dinamico int* p = new int[length]. All'interno di una funzione che riceve p, prova a calcolare la dimensione usando sizeof(p) / sizeof(p[0]). Quale risultato otterrai e perché è sbagliato?

@@ -1,0 +1,22 @@
+Stringhe (C-Style Strings)
+Esercizi di Base
+Lunghezza Manuale: Scrivi una funzione mia_strlen(char str[]) che conti i caratteri di una stringa senza usare la libreria <cstring>.
+
+Concatenazione: Date due stringhe char s1[20] = "Ciao " e char s2[] = "Mondo", uniscile in s1 assicurandoti che ci sia abbastanza spazio.
+
+Palindromo: Scrivi un programma che verifichi se una stringa inserita dall'utente (es: "radar") è palindroma.
+
+C-String literal: Crea un puntatore const char* p = "Programmare". Prova a stampare il terzo carattere usando l'aritmetica dei puntatori: *(p + 2).
+
+Input Sicuro: Usa std::cin.getline() per leggere una frase completa di spazi e stampala al contrario.
+
+Esercizi "Trabochetto"
+L'assenza del Tappo: Crea un array di char di dimensione 3: char c[3] = {'A', 'B', 'C'};. Prova a stamparlo con std::cout << c;. Spiega perché vedi caratteri strani dopo la 'C'.
+
+Confronto tra Indirizzi: Se hai char s1[] = "Test"; e char s2[] = "Test";, perché if (s1 == s2) risulterà quasi certamente FALSO? Quale funzione dovresti usare invece?
+
+Modifica di Literal: Cosa succede se provi a fare char* p = "Ciao"; p[0] = 'B';? Spiega la differenza tra un array di char e un puntatore a una stringa literal.
+
+Buffer Overflow nell'Input: Scrivi un programma che usa std::cin >> buffer (con un buffer piccolo). Inserisci una parola molto lunga e osserva il crash. Come si risolve questo problema di sicurezza?
+
+La trappola di sizeof: Se hai char s[] = "C++", quanto vale sizeof(s)? E se passi s a una funzione, quanto varrà sizeof del parametro all'interno della funzione?
