@@ -1,0 +1,37 @@
+Allocazione della Memoria 
+
+3 tipi di Allocazione di Memoria : 
+
+1. Statica : avviene quando dichiariamo una variabile static , risiede in segmento dati , ha una dimensione fissa , nota alla compilazione
+2. Automatica : avviene quando usiamo variabili locali e parametri , risiede nello stack , ha una dimensione fissa , nota alla compilazione
+3. Dinamica : richiesa a runtime tramite "new" , risiede nell'heap , ha una dimensione variabile decisa a runtime 
+
+Perchè serve l'allocazione dinamica : 
+
+Lo Stack è veloce ma limitato nello spazio . L'allocazione automatica ha 2 problemi : 
+
+1. Dimensione fissa : dobbiamo sapere quanto spazio ci serve PRIMA che il programma parta , se indoviniamo troppo grande , sprechiamo Memoria
+   se indoviniamo troppo piccolo l'array va in overflow
+
+2. Stack overflow : se si crea un array enorme nello stack il programma crasha ha esaurito lo spazio limitato
+
+l'Heap invece è un pool di memoria enorme gestito dal Sistema Operativo 
+
+Memoria Dinamica e Gestione Manuale
+
+A differenza delle variabili normali , la memoria nell'Heap non si pulisce da sola, esistono degli operatori speciali : 
+
+- Operatore new (allocazione) : richiede memoria per un tipo specifico e restituisce l'indirizzo di quella memoria , esempio : int* ptr = new int;
+- Operatore delete (deallocazione) : restituisce la memoria al sistema operativo  , esempio : delete ptr; //libera la memoria puntata
+
+REGOLA D'ORO --> OGNI NEW DEVE ESSERE SEGUITA DALLA SUA DELETE , CAMMINANO SEMPRE INSIEME 
+
+N.B --> delete non distrugge il puntatore ma la variabile a cui punta , il puntatore rimane con un indirizzo invalido 
+
+i 2 pericoli quando si usa la memoria dinamica : 
+
+1. Dangling Pointers : si verifica dopo aver usato un delete su un puntatore, il puntatore ha un comportamento indefinito , buona norma impostare il puntatore a nullptr
+
+2 Memory Leak (problema piu importante) : si verifica quando si perde l'indirizzo di memoria allocata prima di averla liberata , altre cause possono essere riassegnare un puntatore senza aver liberato quello vecchio 
+  l'effetto comune è che la ram si consuma sempre di piu finche rallenta e poi crasha  , percio si segue LA REGOLA D'ORO
+

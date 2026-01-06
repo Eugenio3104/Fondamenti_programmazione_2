@@ -1,0 +1,55 @@
+Introduzione: Cos'è un Array?
+Un array è un contenitore che memorizza una collezione di oggetti dello stesso tipo (elementi).
+La caratteristica fondamentale è che gli elementi sono allocati in modo contiguo in memoria. 
+Questo permette un accesso diretto e velocissimo a qualsiasi elemento tramite un indice
+
+Dichiarazione e Inizializzazione
+Si usano le parentesi quadre []. La dimensione deve essere un'espressione costante
+
+{
+    int voti[5] { 1, 2, 3, 4, 5 }; // Inizializzazione esplicita
+    int vuoto[5] {};              // Inizializzazione a valore (tutti 0)
+    int dedotto[] { 1, 2, 3 };    // Il compilatore deduce la lunghezza (3)
+}
+Passare Array alle Funzioni
+
+Quando scrivi void func(int arr[]), il compilatore lo legge come void func(int* arr).
+Problema: La funzione non sa quanto è lungo l'array.
+
+Soluzione: Devi passare la lunghezza come secondo argomento , esempio : 
+
+{
+    void stampa(int arr[] ,const int len)
+    }
+
+La Natura Statica del Contenitore
+Un array in stile C è un contenitore immutabile nella dimensione. Una volta definito, lo spazio che occupa è "scolpito nella pietra".
+
+Il problema della "Capacità vs Dimensione": A differenza di contenitori più avanzati, l'array C non tiene traccia di quanti elementi hai effettivamente inserito.
+
+Attraversare un array : 
+
+Il Ciclo for Classico (Basato su Indice)
+È il modo più comune e "storico" di iterare su un array C. Qui devi gestire manualmente un contatore (l'indice).
+{
+    int valori[] { 10, 20, 30, 40, 50 };
+    int lunghezza = sizeof(valori) / sizeof(valori[0]); // Calcolo della lunghezza
+
+    for (int i { 0 }; i < lunghezza; ++i) {
+        std::cout << valori[i] << ' ';
+    }
+}
+
+Range-based for loop 
+{
+    int valori[] { 10, 20, 30, 40, 50 };
+
+    for (int v : valori) { // "Per ogni 'v' dentro 'valori'"
+        std::cout << v << ' ';
+    }
+}
+Caratteristiche:
+Niente Indici: Non puoi sbagliare i limiti del contenitore. Fa tutto il compilatore.
+
+Copia vs Riferimento: Se scrivi int v, ogni elemento viene copiato. Se vuoi modificare l'array originale o evitare copie, usa il riferimento: for (auto& v : valori).
+
