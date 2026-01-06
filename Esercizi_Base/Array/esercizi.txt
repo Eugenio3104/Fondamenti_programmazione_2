@@ -6,7 +6,6 @@ Ricerca: Dato un array di 20 numeri casuali, scrivi un programma che trovi il va
 
 Frequenza: Crea un array di 10 elementi (valori da 1 a 5). Conta quante volte compare il numero 3.
 
-Matrice Semplice: Dichiarare una matrice int mat[3][3]. Riempila in modo che ogni cella contenga la somma dei suoi indici (es: mat[1][2] deve contenere 3).
 
 Passaggio a Funzione: Scrivi una funzione stampaArray(int arr[], int size) che stampi tutti gli elementi. Spiega perché il parametro size è obbligatorio.
 
@@ -17,6 +16,5 @@ L'inizializzazione parziale: Se scrivi int a[100] = {1, 2, 3};, cosa contengono 
 
 Copia Impossibile: Prova a copiare un array in un altro usando l'operatore = (es: arr2 = arr1). Spiega l'errore del compilatore e scrivi la soluzione corretta usando un ciclo.
 
-Shadowing degli Indici: Crea un array 2D. Prova a scorrerlo invertendo l'ordine dei cicli (colonne nel ciclo esterno, righe nel ciclo interno). Perché questo metodo è più lento per la CPU?
 
 Decadimento Costante: Crea un array const int a[5]. Prova a passare a a una funzione che accetta int*. Il compilatore accetta? Perché la const-correctness è fondamentale qui?
