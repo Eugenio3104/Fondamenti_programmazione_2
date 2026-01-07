@@ -1,0 +1,56 @@
+Cos'è la Ricorsione 
+In C++, la ricorsione avviene quando una funzione chiama se stessa, direttamente o indirettamente,
+per risolvere un problema decomponendolo in sottoproblemi più piccoli della stessa natura.
+
+L'Anatomia di una Funzione Ricorsiva
+Per evitare che una funzione chiami se stessa all'infinito (causando un Stack Overflow), ogni algoritmo ricorsivo deve avere due componenti fondamentali:
+
+Caso Base (Base Case): La condizione di terminazione. È il sottoproblema più semplice possibile che può essere risolto senza ulteriori chiamate.
+
+Passo Ricorsivo (Recursive Step): La parte in cui la funzione chiama se stessa, ma con un input "ridotto" che tende verso il caso base.
+
+Esempio Classico: Il Fattoriale (n!)
+
+Il fattoriale è definito come nx(n-1) x ... x 1.
+Caso Base: Se n = 0 o n = 1, il risultato è 1
+Passo Ricorsivo: n! = n x (n-1)!
+{
+    int factorial(int n) {
+        if (n <= 1) return 1; // Caso Base
+        return n * factorial(n - 1); // Passo Ricorsivo 
+    }
+}
+
+Meccanismi di Memoria: Lo Stack Frame
+Questa è la parte più critica per capire come il C++ gestisce la ricorsione. Ogni volta che una funzione viene chiamata, 
+il sistema operativo alloca un blocco di memoria nello Stack chiamato Stack Frame (o Activation Record).
+
+Ogni frame contiene:
+
+-Le variabili locali della funzione.
+
+-I parametri passati.
+
+-L'indirizzo di ritorno (dove tornare nel codice una volta finita la funzione).
+
+In una ricorsione profonda, i frame si accumulano l'uno sull'altro. Se la ricorsione non si ferma, 
+lo spazio dedicato allo Stack si esaurisce, provocando il crash del programma (Segmentation Fault dovuto a Stack Overflow).
+
+Tipologie di Ricorsione
+Esistono diversi modi in cui una funzione può richiamare se stessa, con impatti diversi sulle performance:
+
+A. Ricorsione Diretta vs Indiretta
+Diretta: La funzione A chiama A.
+
+Indiretta: La funzione A chiama la funzione B, e la funzione B chiama la funzione A.
+
+B. Tail Recursion (Ricorsione in Coda)
+Si ha quando la chiamata ricorsiva è l'ultima operazione eseguita dalla funzione. Non deve esserci alcun calcolo in sospeso dopo la chiamata.
+
+Regola d'oro: Usa la ricorsione per strutture dati intrinsecamente ricorsive, come:
+
+Alberi (Trees): Visite In-order, Pre-order, Post-order.
+
+Grafi: Algoritmi come DFS (Depth First Search).
+
+Divide et Impera: QuickSort, MergeSort, Torri di Hanoi.

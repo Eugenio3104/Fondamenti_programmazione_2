@@ -1,0 +1,120 @@
+Concetti Fondamentali
+
+Prima di scrivere codice, devi conoscere i criteri di valutazione di un algoritmo:
+
+Complessità Temporale (O): Indica come cresce il tempo di esecuzione al crescere del numero di elementi $n$.
+
+-Ottima: O(n \log n) (Merge Sort, Quick Sort).
+
+-Inefficiente: O(n^2) (Bubble Sort, Selection Sort).
+
+-Complessità Spaziale: Memoria extra richiesta. Un algoritmo si dice in-place se usa una quantità di memoria extra costante, ovvero O(1).
+
+Stabilità: Un algoritmo è stabile se mantiene l'ordine relativo degli elementi con chiavi uguali. 
+Fondamentale se ordini oggetti complessi (es. ordinare per "prezzo" una lista già ordinata per "data").
+
+ORDINAMENTO
+
+Algoritmi Iterativi (O(n^2))
+
+Sono semplici da implementare ma inefficienti per grandi dataset.
+
+Selection Sort
+Cerca il minimo nel vettore e lo scambia con l'elemento in prima posizione, poi cerca il secondo minimo e così via.
+
+-Pro: Esegue il minor numero di scambi possibile.
+-Contro: Sempre O(n^2), anche se il vettore è già ordinato.
+
+Insertion Sort
+
+Funziona come quando ordini le carte in mano: prendi un elemento e lo "inserisci" nella posizione corretta tra quelli già esaminati.
+
+-Best Case: O(n) se il vettore è quasi ordinato.
+-Uso: È estremamente veloce per vettori molto piccoli (meno di 10-20 elementi).
+
+
+Algoritmi Divide et Impera (O(n \log n))
+Questi sono gli algoritmi standard per l'uso generale.
+
+Merge Sort
+Divide il vettore a metà ricorsivamente finché non hai singoli elementi, poi li "fonde" (merge) in ordine.
+
+-Stabilità: Sì.
+-Spazio: O(n) (richiede un vettore d'appoggio).
+-Formula di ricorrenza: T(n) = 2T(n/2) + O(n).
+
+Quick Sort
+
+Sceglie un pivot, mette a sinistra gli elementi minori e a destra quelli maggiori. Poi ripete sui due sottovettori.
+
+-Caso Peggiore: O(n^2) se il pivot è sempre il minimo o il massimo (es. vettore già ordinato).
+-Caso Medio: O(n \log n).
+-In-place: Sì (usa lo stack della ricorsione, ma non vettori extra).
+Ottimizzazione: Usare il "Pivot di Mediana di tre" per evitare il caso peggiore.
+
+La Potenza del C++: std::sort
+In un esercizio reale, non scriverai quasi mai un Bubble Sort. Userai la funzione definita in <algorithm>.
+
+{
+    #include <iostream>
+    #include <vector>
+    #include <algorithm> // Necessario per std::sort
+
+    int main() {
+        std::vector<int> v = {5, 2, 9, 1, 5, 6};
+
+        // Ordina in modo crescente
+        std::sort(v.begin(), v.end());
+
+        // Ordina con una condizione personalizzata (es. decrescente)
+        std::sort(v.begin(), v.end(), [](int a, int b) {
+            return a > b; 
+        });
+
+        return 0;
+    }
+}
+
+
+
+RICERCA
+
+Ricerca Lineare (Linear Search)
+È l'algoritmo più semplice: si scorre l'array dall'inizio alla fine finché non si trova l'elemento.
+-Precondizione: Nessuna (l'array può essere disordinato).
+-Complessità Temporale: O(n).
+-Uso ideale: Array piccoli o non ordinati.
+
+{
+    int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) return i; // Ritorna l'indice
+    }
+    return -1; // Non trovato
+    }
+}
+
+Ricerca Binaria (Binary Search)
+È l'algoritmo "divide et impera" per eccellenza. Riduce lo spazio di ricerca della metà a ogni iterazione.
+-Precondizione: L'array deve essere ordinato.
+-Complessità Temporale: O(\log n).
+-Logica: Confronta il target con l'elemento centrale. Se è minore, cerca nella metà sinistra; se è maggiore, nella metà destra.
+
+{
+    int binarySearch(int arr[], int low, int high, int target) {
+    while (low <= high) {
+        int mid = low + (high - low) / 2; // Evita l'overflow di (low+high)
+
+        if (arr[mid] == target) return mid;
+        if (arr[mid] < target) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+    }
+}
+
+Ricerca Ternaria (Ternary Search)
+
+Simile alla binaria, ma divide l'array in tre parti usando due pivot: mid1 e mid2.
+-Complessità: O(\log_3 n).
+-Nota: Sebbene sembri più veloce, effettua più confronti per iterazione rispetto alla binaria, rendendola spesso meno efficiente nella pratica su architetture moderne.

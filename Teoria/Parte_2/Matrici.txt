@@ -1,0 +1,88 @@
+Array multidimensionali 
+sono strutture dati che permettono di memorizzare elementi dello stesso tipo in una griglia tabulare composta da righe e colonne.
+
+Dichiarazione e Inizializzazione
+In C++, una matrice si dichiara specificando il tipo di dato, il nome e le dimensioni tra parentesi quadre: tipo nomeMatrice[righe][colonne];.
+Quando inizializzi una matrice direttamente, puoi omettere il numero di righe, ma mai quello delle colonne.
+{
+    int mat[][3] = {{1, 2, 3}, {4, 5, 6}}; // Valido: il compilatore conta 2 righe
+}
+Esempi di inizializzazione:
+Vuota: int mat[3][3]; (contiene valori spazzatura).
+
+Con valori: int mat[2][3] = {{1, 2, 3}, {4, 5, 6}};
+
+Parziale: int mat[2][3] = {0}; (inizializza tutto a zero).
+
+Rappresentazione in Memoria
+Il C++ utilizza il Row-Major Order (ordinamento per righe): la prima riga viene memorizzata interamente, seguita immediatamente dalla seconda, e così via.
+
+Nota tecnica: L'indirizzo dell'elemento mat[i][j] viene calcolato dal compilatore come:
+
+{Indirizzo} = {Base} + (i x {NumeroColonne} + j) x {dimensioneTipo}
+
+Accesso e Iterazione
+Per scorrere una matrice, il metodo standard è l'utilizzo di cicli for annidati.
+{
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        int mat[3][3] = {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
+
+        for(int i = 0; i < 3; i++) {       // Ciclo per le righe
+            for(int j = 0; j < 3; j++) {   // Ciclo per le colonne
+                cout << mat[i][j] << " ";
+            }
+            cout << endl;
+        }
+        return 0;
+    }
+}
+
+Matrici e Funzioni
+Passare una matrice a una funzione in C++ richiede un'attenzione particolare: bisogna sempre specificare la dimensione delle colonne.
+{
+    void stampaMatrice(int m[][3], int righe) {
+    // Il numero di colonne (3) è obbligatorio per il calcolo degli indirizzi
+    }
+}
+Se vuoi una matrice a dimensione variabile, devi passare ai puntatori o ai vector.
+
+Traversata delle Diagonali ,  seguono regole matematiche precise:
+-Diagonale Principale: Tutti gli elementi dove r == c.
+-Diagonale Secondaria: In una matrice NxN, sono gli elementi dove r + c == N - 1.
+-Tutte le diagonali (da sinistra a destra): In una matrice, gli elementi sulla stessa diagonale "discendente" hanno la stessa differenza r - c. 
+Quelli sulla stessa diagonale "ascendente" hanno la stessa somma r + c.
+
+Allocazione Dinamica (Heap)
+Quando non conosci le dimensioni della matrice a tempo di compilazione, o quando la matrice è troppo grande per lo stack, 
+devi usare l'heap. Esistono due modi:
+
+A. L'approccio "Array di Puntatori" (Classico ma inefficiente)
+{
+    int** matrix = new int*[rows];
+    for(int i = 0; i < rows; ++i)
+        matrix[i] = new int[cols];
+}
+Perché evitarlo? Ogni riga viene allocata separatamente in punti diversi della memoria
+come deallocare questa soluzione : 
+{
+    for(int i = 0; i < rows; ++i)
+        delete[] matrix[i]; // Cancella ogni riga
+    delete[] matrix;        // Cancella l'array di puntatori
+}
+
+
+B. L'approccio "Array Singolo" (Performance elevate)
+Si alloca un unico grande blocco di memoria e si simulano le due dimensioni matematicamente.
+{
+    int* matrix = new int[rows * cols];
+
+    // Per accedere a (r, c):
+    matrix[r * cols + c] = 10;
+}
+come deallocare questa soluzione : 
+{
+    delete[] matrix;
+}

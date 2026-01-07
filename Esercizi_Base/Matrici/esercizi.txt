@@ -1,0 +1,19 @@
+Somma degli elementi: Crea una matrice $3 \times 3$ di interi, inizializzala con valori a tua scelta e calcola la somma totale di tutti gli elementi.
+
+Trova il Massimo e Minimo: Data una matrice $4 \times 4$ popolata con numeri casuali, scrivi un programma che trovi il valore massimo e il valore minimo, indicando in quale riga e colonna si trovano.
+
+Media per Riga: Scrivi un programma che calcoli la media dei valori di ogni singola riga di una matrice $3 \times 5$ e stampi i risultati in un array separato.
+
+Cerca Elemento: Chiedi all'utente un numero e verifica se è presente in una matrice $3 \times 3$. Se esiste, stampa "Trovato in $[i][j]$", altrimenti stampa "Non presente".
+
+Copia e Raddoppia: Crea una matrice $A$ e una matrice $B$ delle stesse dimensioni. Copia il contenuto di $A$ in $B$, ma moltiplicando ogni valore per 2.
+
+La Trasposta In-Place: Data una matrice quadrata ($N \times N$), scambia gli elementi in modo da ottenere la trasposta (le righe diventano colonne) senza usare una seconda matrice di supporto.Suggerimento: Devi lavorare solo sopra la diagonale principale.
+
+Cornice di Zeri: Data una matrice $N \times M$ riempita di numeri, "azzera" solo gli elementi che si trovano sul perimetro (la prima riga, l'ultima riga, la prima colonna e l'ultima colonna).
+
+Prodotto Riga per Colonna: Date due matrici $A$ ($2 \times 3$) e $B$ ($3 \times 2$), implementa il prodotto matriciale classico. Ricorda che il risultato sarà una matrice $2 \times 2$.Formula: $C[i][j] = \sum A[i][k] \times B[k][j]$
+
+Il Cammino del Cavallo (Check): Data una matrice $8 \times 8$ che rappresenta una scacchiera, chiedi all'utente le coordinate di un Cavallo. Stampa la matrice segnando con un X tutte le posizioni in cui il Cavallo può saltare legalmente (movimento a "L").
+
+Rotazione di 90 Gradi: Data una matrice quadrata, ruotala di 90 gradi in senso orario.Tricky: Puoi farlo in due passaggi (trasposta + inversione delle righe) o direttamente con un complicato gioco di indici. Prova a farlo senza matrici d'appoggio!

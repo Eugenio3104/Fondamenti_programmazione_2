@@ -1,0 +1,75 @@
+ORDINAMENTO
+
+Esercizio 1: Bubble Sort con Ottimizzazione
+Obiettivo: Implementare l'algoritmo Bubble Sort e comprendere il concetto di efficienza nei cicli.
+Traccia: Scrivi una funzione void bubbleSort(int arr[], int n) che ordini un array in modo crescente. L'algoritmo deve confrontare coppie di elementi adiacenti e scambiarli se sono nell'ordine errato.
+Requisito Tecnico: Implementa una versione ottimizzata utilizzando una variabile booleana scambiato. Se durante un intero passaggio nell'array non avviene alcuno scambio, l'algoritmo deve interrompersi immediatamente.
+Test: Prova l'algoritmo con l'array {64, 34, 25, 12, 22, 11, 90}.
+
+
+Esercizio 2: Selection Sort (Ricerca del Minimo)
+Obiettivo: Gestire gli indici e la selezione sistematica degli elementi.
+Traccia: Implementa l'algoritmo Selection Sort. Il programma deve dividere idealmente l'array in una parte ordinata e una non ordinata. 
+In ogni iterazione, deve cercare l'elemento minimo nella parte non ordinata e scambiarlo con il primo elemento della stessa.
+Input: Chiedi all'utente di inserire 8 numeri interi da tastiera.
+Output: Stampa l'array dopo ogni "scambio principale" per visualizzare come il minimo viene spostato all'inizio.
+
+
+Esercizio 3: Insertion Sort con Stringhe
+Obiettivo: Applicare gli algoritmi di ordinamento a tipi di dati non numerici.
+Traccia: Crea un programma che ordini un array di stringhe (nomi di città) in ordine alfabetico utilizzando l'Insertion Sort.
+Logica: L'algoritmo deve prelevare un elemento ("chiave") e inserirlo nella posizione corretta tra gli elementi precedenti già ordinati, facendoli scorrere a destra se necessario.
+
+Esempio dati: {"Milano", "Roma", "Napoli", "Venezia", "Bologna"}.
+
+
+Esercizio 4: std::sort e Calcolo della Mediana
+Obiettivo: Imparare a utilizzare gli strumenti della Standard Template Library (STL).
+Traccia: 1. Crea un std::vector<float> contenente 11 numeri decimali casuali. 2. Utilizza la funzione std::sort(v.begin(), v.end()) per ordinare il vettore. 3.
+Dopo l'ordinamento, trova e stampa la mediana (l'elemento che si trova esattamente al centro del vettore ordinato).
+Nota: Ricorda di includere le librerie <vector> e <algorithm>.
+
+
+Esercizio 5: Ordinamento di Strutture Dati (Custom Comparator)
+Obiettivo: Ordinare oggetti complessi in base a una proprietà specifica.
+Traccia: Definisci una struct Prodotto che contenga: std::string nome e double prezzo.
+Compito: 1. Crea un vettore di 5 prodotti con nomi e prezzi diversi. 2. Ordina il vettore dal prodotto più costoso a quello più economico (ordine decrescente).
+Requisito Tecnico: Utilizza std::sort passando come terzo argomento una lambda function per definire il criterio di confronto basato sul campo prezzo.
+
+
+RICERCA
+
+Esercizio 1: Ricerca Lineare dell'Ultima Occorrenza
+Obiettivo: Gestione dei cicli e degli indici in array non ordinati. Traccia:
+Scrivere una funzione int findLastIndex(int arr[], int n, int target) che riceva un array di interi e la sua dimensione. 
+L'algoritmo deve scorrere l'array e restituire l'indice della posizione più avanzata (l'ultima) in cui compare il valore target.
+Se l'elemento non è presente, restituire -1.
+Input di esempio: arr = {2, 5, 3, 5, 8}, target = 5
+Output atteso: 3
+
+Esercizio 2: Ricerca Binaria con Prevenzione OverflowObiettivo: Implementazione robusta della ricerca binaria iterativa.Traccia:
+Implementare l'algoritmo di ricerca binaria in modo iterativo. La funzione deve accettare un array ordinato e un valore target.
+Si richiede specificamente di calcolare l'indice centrale (mid) utilizzando la formula sicura per evitare l'integer overflow: $mid = low + (high - low) / 2$.
+Input di esempio: arr = {10, 20, 30, 40, 50}, target = 40Output atteso: 3
+
+
+Esercizio 3: Conteggio Duplicati in $O(\log n)$Obiettivo: Ottimizzazione delle performance su array ordinati.Traccia:
+Dato un array ordinato con possibili elementi duplicati, scrivere un programma che calcoli la frequenza (numero di occorrenze) di un valore X.
+Vincolo: Non è ammesso l'uso di una ricerca lineare ($O(n)$). Utilizzare la logica della ricerca binaria per individuare il primo e l'ultimo indice del valore X e calcolare la differenza.
+Input di esempio: arr = {1, 2, 2, 2, 3, 4}, target = 2
+Output atteso: 3 (il numero 2 appare tre volte).
+
+Esercizio 4: Ricerca dell'Elemento MancanteObiettivo: Applicazione creativa della ricerca binaria.Traccia:
+Si riceve un array ordinato di $n-1$ interi distinti. Gli elementi appartengono all'intervallo $[1, n]$. 
+Ciò significa che manca esattamente un numero tra $1$ e $n$.Sfida: Trovare il numero mancante con una complessità temporale di $O(\log n)$.
+Suggerimento: In un array completo, il valore all'indice i dovrebbe essere i + 1. Se arr[mid] > mid + 1, il numero mancante si trova a sinistra, altrimenti a destra.
+Input di esempio: arr = {1, 2, 3, 5, 6}, $n=6$
+Output atteso: 4
+
+Esercizio 5: Analisi di Intervallo con STL (lower_bound)
+Obiettivo: Utilizzo professionale della Standard Template Library (STL). Traccia: Utilizzando esclusivamente le funzioni della libreria <algorithm>, scrivere un programma che:
+Verifichi se un target esiste in un std::vector<int> ordinato.
+Indichi quanti elementi nell'array sono strettamente minori del target.
+Requisiti: Utilizzare std::lower_bound per ottenere l'iteratore e std::distance per calcolare la posizione.
+Input di esempio: v = {10, 20, 30, 30, 40}, target = 30
+Output atteso: Trovato: Sì, Elementi minori: 2
