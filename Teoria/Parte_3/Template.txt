@@ -1,0 +1,52 @@
+Cos'è : 
+Se le classi sono il progetto per gli oggetti, i template sono il progetto per le classi (o per le funzioni).
+Invece di scrivere la stessa logica per int, double e string, 
+scrivi una logica "generica" e lasci che il compilatore generi il codice specifico per te quando ne hai bisogno.
+
+Template di Funzione
+È il modo più semplice per capire il concetto. Immagina di voler una funzione che scambi il valore di due variabili.
+{
+    template <typename T>
+    void scambia(T& a, T& b) {
+        T temp = a;
+        a = b;
+        b = temp;
+    }
+    -template <typename T>: Dice al compilatore che T è un segnaposto per un tipo che verrà deciso in seguito.
+    -Istanziazione: Quando scrivi scambia(x, y), il compilatore guarda il tipo di x e y e genera "dietro le quinte" la versione 
+    corretta della funzione.
+}
+
+emplate di Classe
+Puoi rendere un'intera classe generica.
+{
+    template <typename T>
+    class Scatola {
+    private:
+        T contenuto;
+    public:
+        Scatola(T c) : contenuto(c) {}
+        T getContenuto() const { return contenuto; }
+    };
+
+    // Utilizzo:
+    Scatola<int> scatolaInteri(10);
+    Scatola<string> scatolaStringhe("Libro");
+    }
+}
+
+Parametri Non-Tipo (Non-type Template Parameters)
+Un template non deve necessariamente ricevere solo un "tipo" (int, double). Può ricevere anche un valore costante, come una dimensione.
+{
+    template <typename T, int dimensione>
+    class ArrayStatico {
+        T dati[dimensione]; // Array di dimensione fissa decisa a compile-time
+    };
+
+    ArrayStatico<int, 10> mioArray;
+}
+
+Template e Ereditarietà
+Le classi template possono ereditare da classi non-template, e viceversa. Tuttavia, c'è una particolarità: se una classe derivata 
+eredita da un template, l'accesso ai membri della baserichiede spesso l'uso di this-> o di Base<T>:: perché il compilatore non sa 
+cosa ci sarà dentro Base<T> finché non viene istanziata.

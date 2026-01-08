@@ -4,3 +4,36 @@ la struct può contenere:
 -Metodi (funzioni).
 -Costruttori e Distruttori.
 -Specificatori di accesso (public, private, protected).
+Di default è tutto public , quindi ideali per oggetti che non richiedono protezione 
+
+Member Initializer List nelle Struct
+Anche nelle struct, per inizializzare i membri è preferibile usare la lista di inizializzazione nel costruttore per motivi di performance.
+{
+    struct Punto {
+        int x, y;
+        Punto(int _x, int _y) : x(_x), y(_y) {} // Efficienza massima
+    };
+}
+
+Inizializzazione Aggregata (Aggregate Initialization)
+Questa è la caratteristica più potente e utilizzata delle struct. 
+Se una struct non ha costruttori definiti dall'utente, non ha membri privati e non ha classi base, puoi inizializzarla usando le parentesi graffe:
+{
+    struct Dati {
+        int id;
+        double valore;
+        char categoria;
+    };
+
+    Dati d1 = {10, 5.5, 'A'}; // Inizializzazione diretta dei membri nell'ordine di dichiarazione
+    //oppure 
+    Dati d2 = {.id = 20, .valore = 12.3}; // Più chiaro e meno incline a errori
+    //per accedere quindi a un valore si fa : 
+    Dati d3;
+    int Identificativo = d3.id;
+}
+
+Passaggio di Struct alle Funzioni
+Data la loro natura di "contenitori di dati", le struct possono diventare grandi.
+-Passaggio per valore: void elabora(Dati d) -> Copia l'intera struttura (Lento).
+-Passaggio per riferimento costante: void elabora(const Dati& d) -> Passa solo l'indirizzo (Veloce e sicuro).

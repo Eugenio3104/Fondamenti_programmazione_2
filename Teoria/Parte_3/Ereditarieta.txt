@@ -1,0 +1,53 @@
+Cos'è:
+Permette di creare una nuova classe (classe derivata o figlia) basata su una classe esistente (classe base o padre),
+ereditandone attributi e metodi. Questo favorisce il riutilizzo del codice e la creazione di gerarchie logiche.
+
+Sintassi e Tipi di Ereditarietà
+In C++, l'ereditarietà si specifica con i due punti : seguiti da uno specificatore di accesso.
+{
+    class Base {
+    // ...
+    };
+
+    class Derivata : public Base {
+        // ...
+    };
+}
+
+visibilità : 
+Il modo in cui i membri della classe base appaiono nella classe derivata dipende dallo specificatore di accesso usato durante l'ereditarietà:
+
+Accesso nella Base     public Inheritance         protected Inheritance      private Inheritance
+public                 Diventa public             Diventa protected          Diventa private
+protected              Diventa protected          Diventa protected          Diventa private
+private                Inaccessibile              Inaccessibile              Inaccessibile
+
+Ordine di Costruzione e Distruzione
+Questo è un concetto critico per gli esercizi e la gestione della memoria.
+-Costruzione: Quando crei un oggetto della classe derivata, viene chiamato prima il costruttore della classe base e poi quello della derivata.
+-Distruzione: Il processo è inverso. Viene chiamato prima il distruttore della derivata e poi quello della base.
+
+Passaggio di parametri alla Base
+Se la classe base non ha un costruttore di default, 
+la classe derivata deve chiamare esplicitamente un costruttore della base tramite la lista di inizializzazione:
+
+{
+    class Animale {
+    public:
+        Animale(string nome) { ... }
+    };
+
+    class Cane : public Animale {
+    public:
+        Cane(string nome) : Animale(nome) { // Chiamata obbligatoria
+            // Logica specifica del cane
+        }
+    };
+}
+
+Forme di Ereditarietà
+C++ supporta diverse strutture gerarchiche:
+-Singola: Una classe deriva da una sola base.
+-Multilivello: Una classe C deriva da B, che a sua volta deriva da A.
+-Multipla: Una classe deriva da due o più classi base contemporaneamente (class C : public A, public B).
+-Gerarchica: Più classi derivano dalla stessa base.

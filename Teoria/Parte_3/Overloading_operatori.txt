@@ -1,0 +1,78 @@
+cos'è : 
+Permette di definire il comportamento degli operatori standard (come +, -, *, ==, <<) quando applicati agli oggetti delle tue classi.
+Invece di scrivere risultato = somma(complesso1, complesso2);, puoi scrivere semplicemente risultato = complesso1 + complesso2;.
+
+Alcune regole : 
+-Solo operatori esistenti: Non puoi inventare nuovi operatori (es. ** per la potenza).
+-Precedenza e Associatività: Non cambiano. Il * avrà sempre la precedenza sul +.
+-Almeno un operando utente: Non puoi cambiare il comportamento di int + int. Almeno uno dei due operandi deve essere un tuo oggetto.
+-Operatori non sovraccaricabili: Alcuni non possono essere modificati:
+. (punto di accesso ai membri)
+:: (risoluzione dello scope)
+?: (operatore ternario)
+sizeof
+
+Metodo Membro vs Funzione Amica (Friend)
+Ci sono due modi per sovraccaricare un operatore:
+A. Come Metodo Membro
+L'operatore viene chiamato sull'oggetto di sinistra. L'operando di destra viene passato come parametro.
+Si usa per: Operatori che modificano l'oggetto (come +=, -=, ++) o operatori speciali come =, [], (), ->.
+
+B. Come Funzione Libera (spesso friend)
+L'operatore è una funzione esterna che prende due parametri.
+
+Si usa per: Operatori binari che non devono modificare gli operandi (come +, -, <) e per gestire la commutatività.
+Esempio: Se vuoi fare 2 + oggetto, il metodo membro non funzionerebbe perché 2 non è un oggetto della tua classe. 
+Una funzione friend invece può gestire entrambi i tipi.
+
+ESEMPIO : 
+{
+    #include <iostream>
+    using namespace std;
+
+    class Punto {
+    private:
+        int x, y;
+    public:
+        Punto(int x = 0, int y = 0) : x(x), y(y) {}
+
+        // 1. Overloading del + (come funzione friend)
+        friend Punto operator+(const Punto& p1, const Punto& p2) {
+            return Punto(p1.x + p2.x, p1.y + p2.y);
+        }
+
+        // 2. Overloading del << per cout (sempre friend)
+        friend ostream& operator<<(ostream& os, const Punto& p) {
+            os << "(" << p.x << ", " << p.y << ")";
+            return os; // Restituisce lo stream per permettere il concatenamento
+        }
+    };
+
+    int main() {
+        Punto a(1, 2), b(3, 4);
+        Punto c = a + b; // Usa l'operatore + sovraccaricato
+        cout << "Il punto c è: " << c << endl; // Usa l'operatore << sovraccaricato
+        return 0;
+    }
+}
+
+L'Operatore di Assegnazione (operator=)
+Questo è l'unico operatore che viene fornito dal compilatore se non lo scrivi. Tuttavia, come abbiamo visto nella Rule of Three, 
+se hai memoria dinamica devi scriverlo tu per fare una Deep Copy. Deve sempre controllare l'auto-assegnazione:
+{
+    Classe& operator=(const Classe& altro) {
+        if (this == &altro) return *this; // Protezione: a = a;
+        // ... logica di copia ...
+        return *this;
+    }
+}
+
+Operatore Subscript ([])
+Molto utile se la tua classe gestisce un array o una collezione. Di solito si forniscono due versioni:
+-Una per la lettura/scrittura su oggetti normali
+-Una const per la sola lettura su oggetti costanti.
+
+{
+    int& operator[](int indice) { return array[indice]; }
+    const int& operator[](int indice) const { return array[indice]; }
+}

@@ -1,0 +1,73 @@
+Cos'è 
+La parola stessa deriva dal greco e significa "molte forme". In C++,
+permette a un'unica interfaccia (una funzione o un oggetto) di comportarsi in modi diversi a seconda del tipo di dato su cui opera.
+
+Polimorfismo Statico (Early Binding)
+Avviene durante la compilazione. Il compilatore sa già esattamente quale funzione chiamare.
+
+A. Overloading delle Funzioni
+Più funzioni con lo stesso nome ma parametri diversi (per tipo o numero).
+{
+    void stampa(int i) { cout << "Intero: " << i; }
+    void stampa(string s) { cout << "Stringa: " << s; }
+}
+
+B. Overloading degli Operatori
+Permette di ridefinire il comportamento degli operatori (come +, -, <<) per le tue classi.
+
+C. Templates (Polimorfismo Parametrico)
+Permette di scrivere codice generico che funziona con qualsiasi tipo di dato.
+{
+    template <typename T>
+    T massimo(T a, T b) { return (a > b) ? a : b; }
+}
+
+Polimorfismo Dinamico (Late Binding)
+Questo è il "vero" polimorfismo della OOP. Avviene durante l'esecuzione (runtime). Permette di richiamare metodi di una classe derivata attraverso un puntatore o un riferimento della classe base.
+
+Le Funzioni Virtuali (virtual)
+Per abilitare il polimorfismo dinamico, devi dichiarare un metodo come virtual nella classe base.
+
+{
+    class Animale {
+    public:
+        virtual void verso() { cout << "Verso generico"; }
+    };
+
+    class Cane : public Animale {
+    public:
+        void verso() override { cout << "Bau Bau"; } // override è opzionale ma consigliato
+    };
+}
+Se ora usiamo un puntatore della classe base per puntare a un oggetto figlio:
+{
+    Animale* ptr = new Cane();
+    ptr->verso(); // Stampa "Bau Bau" invece di "Verso generico"
+}
+
+Classi Astratte e Funzioni Virtuali Pure
+A volte vuoi che la classe base serva solo come "schema" e non vuoi che vengano creati oggetti di quel tipo 
+(es. non esiste un "Animale" generico, esiste un Cane, un Gatto, ecc.).
+
+Si usa la Funzione Virtuale Pura:
+{
+    class Forma {
+    public:
+        virtual void disegna() = 0; // "= 0" rende la funzione virtuale pura
+    };
+}
+-Una classe che contiene almeno una funzione virtuale pura è una Classe Astratta.
+-Non puoi istanziare una classe astratta (Forma f; darà errore).
+-Le classi derivate devono implementare la funzione disegna(), altrimenti diventano astratte a loro volta.
+
+Il Distruttore Virtuale (Fondamentale!)
+Se usi il polimorfismo, devi sempre dichiarare il distruttore della classe base come virtual.
+{
+    class Base {
+    public:
+        virtual ~Base() { cout << "Distruttore Base\n"; }
+    };
+}
+Perché? Se distruggi un oggetto Cane tramite un puntatore Animale*, e il distruttore non è virtuale,
+verrà chiamato solo il distruttore della base.
+Se il cane aveva allocato memoria dinamica, quella memoria non verrà mai liberata, causando un memory leak.
