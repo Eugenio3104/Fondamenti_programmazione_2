@@ -1,0 +1,6 @@
+In C++, una struct è un tipo di dato definito dall'utente che può contenere membri di tipo diverso. 
+la struct può contenere:
+-Attributi (variabili).
+-Metodi (funzioni).
+-Costruttori e Distruttori.
+-Specificatori di accesso (public, private, protected).

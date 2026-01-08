@@ -1,0 +1,78 @@
+Cosa è : 
+Le classi sono il cuore della programmazione orientata agli oggetti (OOP) in C++.
+Immaginale come un progetto (blueprint) o uno stampo:
+definiscono la struttura e il comportamento che gli oggetti (le istanze create da quel progetto) avranno.
+
+Definizione e Sintassi Base
+Una classe raggruppa dati (attributi) e funzioni (metodi) in un'unica unità.
+
+{
+    class Automobile {
+    public:
+        string marca;    // Attributo
+        void accelera() { // Metodo
+            cout << "L'auto sta accelerando!";
+        }
+    };
+}
+
+Differenza tra Classe e Oggetto
+
+-Classe: Il concetto astratto (es. il disegno tecnico di una casa). Non occupa memoria finché non viene istanziata.
+-Oggetto: L'entità reale (es. la casa costruita in Via Roma 10).
+
+
+Modificatori di Accesso (Encapsulation)
+C++ offre tre livelli di visibilità per proteggere i dati:
+-public: I membri sono accessibili da qualsiasi parte del programma.
+-private: I membri sono accessibili solo dall'interno della classe stessa. (Default per le class).
+-protected: Simile a private, ma i membri sono accessibili anche dalle classi derivate (ereditarietà).
+
+Costruttori e Distruttori
+Il Costruttore (Constructor)
+È un metodo speciale chiamato automaticamente quando crei un oggetto. Ha lo stesso nome della classe e non ha tipo di ritorno.
+-Default Constructor: Non accetta parametri.
+-Parameterized Constructor: Inizializza l'oggetto con valori specifici.
+-Copy Constructor: Crea un nuovo oggetto come copia di uno esistente.
+Best Practice: Usa la Member Initializer List (Costruttore() : var1(val), var2(val) {}) per efficienza.
+
+Il Distruttore (Destructor)
+Inizia con una tilde (~). Viene chiamato quando l'oggetto esce dal suo "scope" (es. finisce la funzione) 
+o viene eliminato. È fondamentale per liberare memoria dinamica.
+
+Metodi: Inside vs Outside
+Puoi definire le funzioni all'interno della classe o solo dichiararle e definirle fuori usando l'operatore di risoluzione dello scope ::.
+{
+    class Esempio {
+    public:
+        void stampa(); // Dichiarazione
+    };
+
+    void Esempio::stampa() { // Definizione esterna
+        cout << "Metodo definito fuori!";
+    }
+}
+
+Il puntatore this
+Ogni oggetto ha accesso al proprio indirizzo tramite il puntatore this.
+È utile quando i nomi dei parametri del costruttore sono uguali ai nomi degli attributi: this->velocita = velocita;
+
+Membri Statici (static)
+Se un membro è static, ne esiste una sola copia per tutta la classe, condivisa da tutti gli oggetti creati. 
+È utile per contatori globali o configurazioni comuni.
+
+Getter e Setter 
+-Getter (Accessors): Metodi che "leggono" il valore di un attributo privato e lo restituiscono all'esterno.
+In genere sono marchiati come const perché non devono modificare l'oggetto.
+
+-Setter (Mutators): Metodi che "scrivono" o modificano il valore di un attributo privato. Qui è dove avviene il controllo della logica.
+
+Membri const e Funzioni const
+Se in un esercizio vedi void stampa() const, quel const alla fine significa: "Giuro che questa funzione non cambierà nessuna variabile della classe".
+Se provi a modificare un attributo dentro una funzione const, il compilatore ti blocca.
+
+La Gestione della Memoria (Rule of Three)
+Se la classe alloca memoria dinamica con new, devi definire:
+-Distruttore: Per fare delete.
+-Copy Constructor: Per creare una copia profonda (Deep Copy) ed evitare che due oggetti puntino alla stessa memoria.
+-Copy Assignment Operator (operator=): Per gestire l'assegnazione tra oggetti esistenti.
