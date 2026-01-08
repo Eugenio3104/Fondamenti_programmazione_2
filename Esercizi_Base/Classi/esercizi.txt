@@ -1,0 +1,36 @@
+1. Classi (Fondamentali e Incapsulamento)
+Esercizio 1: Gestione Account Utente Crea una classe Utente con attributi privati: username, password e email.
+Implementa un costruttore che inizializzi i campi.
+Implementa i Getter per tutti i campi.
+Implementa un Setter per la password che la modifichi solo se la nuova password ha una lunghezza minima di 8 caratteri.
+
+Esercizio 2: Sensore di Temperatura Crea una classe Termometro che memorizzi la temperatura in Celsius.
+Usa un costruttore per impostare una temperatura iniziale.
+Aggiungi metodi per ottenere la temperatura in Fahrenheit e Kelvin (usa le formule di conversione).
+Aggiungi un metodo stampaReport() che mostri il valore in tutte e tre le scale.
+
+Esercizio 3: Operazioni tra Frazioni Crea una classe Frazione con numeratore e denominatore.
+Sovraccarica l'operatore * per moltiplicare due frazioni.
+Sovraccarica l'operatore << per stampare la frazione nel formato num/den.
+Bonus: Crea una funzione privata per semplificare la frazione (MCD).
+
+Esercizio 4: Confronto tra Orari Crea una classe Orario (ore, minuti, secondi).
+Sovraccarica l'operatore == per verificare se due orari sono identici.
+Sovraccarica l'operatore < per determinare quale orario viene prima cronologicamente.
+
+Esercizio 5: Sistema di Pagamento Crea una classe base astratta MetodoPagamento.
+Aggiungi una funzione virtuale pura virtual void paga(double importo) = 0;.
+Crea due classi derivate: CartaCredito e PayPal.
+Implementa il metodo paga in modo che stampi un messaggio specifico (es. "Pagato [X] con Carta di Credito").
+Nel main, usa un puntatore MetodoPagamento* per chiamare il metodo su entrambi gli oggetti.
+
+Esercizio 6: Gerarchia Dipendenti Crea una classe base Dipendente con attributi nome e salarioBase.
+Crea una classe derivata Manager che aggiunge un attributo bonus.
+Usa il polimorfismo per implementare un metodo calcolaStipendio().
+Nel Manager, lo stipendio totale deve essere salarioBase + bonus.
+Assicurati di usare un distruttore virtuale nella classe base.
+
+Esercizio 7: Veicoli e Motori Crea una classe Veicolo con un metodo virtuale accendi().
+Crea una classe Auto e una classe Moto che ereditano da Veicolo.
+Sovrascrivi (override) il metodo accendi() per stampare suoni diversi (es. "Vrum Vrum" vs "Brum Brum").
+Crea un array di puntatori Veicolo* e usa un ciclo per accenderli tutti contemporaneamente.

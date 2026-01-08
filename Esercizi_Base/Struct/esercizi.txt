@@ -1,0 +1,12 @@
+Esercizio 1: Gestione Magazzino Definisci una struct Prodotto con: codiceID (int), nome (string) e prezzo (double).
+Crea un array di 3 Prodotto.
+Inizializza l'array usando l'inizializzazione aggregata {...}.
+Scrivi una funzione che riceva l'array e stampi il nome del prodotto più costoso.
+
+Esercizio 2: Geometria Semplice Definisci una struct Punto (x, y).
+Definisci una struct Cerchio che contenga un Punto (centro) e un raggio.
+Scrivi una funzione che calcoli l'area del cerchio passando la struct per riferimento costante.
+
+Esercizio 3: Configurazione Sistema Crea una struct Configurazione usando i Bit-Fields.
+Usa 1 bit per modalitàNotte, 1 bit per connesso, e 3 bit per livelloLuminosità (0-7).
+Mostra come la dimensione della struct sia estremamente ridotta rispetto all'uso di variabili int standard.

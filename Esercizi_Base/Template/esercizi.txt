@@ -1,0 +1,9 @@
+Esercizio 1: Funzione di Ricerca Universale Scrivi un Template di funzione chiamato trovaMassimo che accetti 
+un array di tipo generico T e la sua dimensione.
+La funzione deve restituire l'elemento più grande dell'array.
+Provala nel main con un array di int e un array di double.
+
+Esercizio 2: Classe Contenitore Safe Crea un Template di classe Contenitore<T>.
+La classe deve avere un singolo elemento di tipo T.
+Aggiungi un metodo sostituisci(T nuovoValore) e un metodo getValore().
+Prova a istanziarla per un tipo char e per un tipo float.
