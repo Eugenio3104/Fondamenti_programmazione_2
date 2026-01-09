@@ -1,0 +1,61 @@
+Cos'È
+Un pair è un template di classe che memorizza due valori eterogenei.
+-Il primo valore è accessibile tramite il membro first.
+-Il secondo valore è accessibile tramite il membro second.
+
+{
+    std::pair<int, std::string> studente;
+    studente.first = 101;
+    studente.second = "Marco";
+}
+
+Inizializzazione e Creazione
+Esistono diversi modi per creare un pair, dai più classici ai più moderni.
+
+{
+    std::pair<int, char> p1;               // Default: (0, '\0')
+    std::pair<int, char> p2(1, 'a');       // Inizializzato con valori
+    std::pair<int, char> p3(p2);           // Costruttore di copia
+
+    List Initialization (C++11)
+    Il modo più sintetico e moderno:
+    {
+        std::pair<int, std::string> p5 = {1, "Esempio"};
+    }
+}
+
+
+Operazioni e Funzioni Associate
+A. Confronto
+I pair supportano tutti gli operatori di confronto (==, !=, <, >, <=, >=).
+Regola di confronto: Il confronto avviene in ordine lessicografico. Viene confrontato prima first; se sono uguali, viene confrontato second.
+Questo rende i pair utilissimi per ordinare dati basati su due criteri.
+
+.swap() --> Scambia il contenuto di due pair dello stesso tipo.
+
+Structured Bindings 
+Questa è la funzionalità che ha reso i pair molto più eleganti da usare. Permette di "spacchettare" il pair in variabili distinte:
+{
+    std::pair<int, int> coord = {10, 20};
+    auto [x, y] = coord; // x = 10, y = 20
+}
+
+Casi d'uso : 
+
+A. Restituire due valori da una funzione
+Poiché una funzione C++ può restituire un solo valore, 
+il pair è la soluzione standard per restituire due dati correlati (es. un risultato e un codice di errore).
+{
+    std::pair<int, bool> dividi(int a, int b) {
+    if (b == 0) return {0, false};
+    return {a / b, true};
+    }
+}
+
+Inserimento nei Vector
+Spesso si creano vector di pair per gestire tabelle di dati semplici.
+{
+    std::vector<std::pair<int, std::string>> classifica;
+    classifica.push_back({1, "Oro"});
+    classifica.emplace_back(2, "Argento"); // Più efficiente
+}

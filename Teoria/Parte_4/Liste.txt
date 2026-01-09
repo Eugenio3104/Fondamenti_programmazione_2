@@ -1,0 +1,64 @@
+Cos'è 
+In C++, std::list è implementata come una lista doppiamente concatenata (doubly linked list). 
+Ogni elemento è un nodo separato che contiene il dato e due puntatori: uno al nodo precedente e uno al successivo.
+
+Caratteristiche FondamentaliA differenza del vector, la lista non occupa un blocco di memoria contiguo.
+-Memoria non contigua: Ogni elemento può trovarsi ovunque nella memoria.
+-Inserimento/Rimozione Rapidi: Aggiungere o togliere elementi in qualsiasi punto costa sempre O(1) (se hai già l'iteratore).
+-Nessun Accesso Casuale: Non puoi fare lista[5]. Per arrivare al quinto elemento, devi scorrere i primi quattro.
+-Stabilità degli Iteratori: Rimuovere o aggiungere elementi non invalida gli iteratori che puntano agli altri elementi (al contrario del vector).
+
+Dichiarazione e Inizializzazione
+Richiede l'header <list>.
+{
+    #include <list>
+    #include <string>
+
+    // 1. Lista vuota
+    std::list<int> l1;
+
+    // 2. Lista con 5 elementi inizializzati a 100
+    std::list<int> l2(5, 100);
+
+    // 3. Inizializzazione con lista (C++11)
+    std::list<std::string> l3 = {"C++", "Java", "Python"};
+
+    // 4. Copia di un'altra lista
+    std::list<std::string> l4(l3);
+}
+
+Traversamento (Iterazione)
+Poiché non esiste l'accesso tramite indice, dobbiamo usare gli iteratori o i cicli moderni.
+
+A. Ciclo Range-based (Il più semplice)
+{
+    for (const auto& x : l3) {
+        std::cout << x << " ";
+    }
+}
+
+B. Iteratori (Per modifiche o scorrimento manuale)
+{
+    for (auto it = l3.begin(); it != l3.end(); ++it) {
+        std::cout << *it << " ";    
+    }
+}
+
+Nota: Puoi usare anche rbegin() e rend() per scorrere la lista al contrario.
+
+Inserimento e Rimozione (Il punto di forza)A. In testa e in codaMentre il vector è veloce solo in coda, la lista è efficiente su entrambi i lati:
+-push_front(val) / pop_front(): O(1)
+-push_back(val) / pop_back(): O(1)
+
+Inserimento generico: insert() e emplace()
+Se hai un iteratore che punta a una posizione, l'inserimento è istantaneo:
+{
+    auto it = l1.begin();
+    std::advance(it, 2); // Sposta l'iteratore alla posizione 2
+    l1.insert(it, 50);   // Inserisce 50 in quella posizione. O(1)
+}
+
+Rimozione: erase() e remove()
+-l1.erase(it): Rimuove l'elemento puntato dall'iteratore.
+-l1.remove(valore): Funzione speciale della lista che rimuove tutte le istanze di un valore specifico.
+

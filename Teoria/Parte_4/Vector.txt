@@ -1,0 +1,52 @@
+Cosa sono 
+Possiamo pensarli come degli array dinamici che possono ridimensionarsi automaticamente.
+bisogna richiede l'header :  #include <vector>
+
+Il std::vector è un contenitore di sequenza che incapsula array di dimensioni dinamiche. A differenza degli array statici,
+la memoria viene gestita automaticamente dal contenitore. Caratteristiche Principali
+-Accesso Casuale: È possibile accedere a qualsiasi elemento in tempo costante O(1).
+-Memoria Contigua: Gli elementi sono memorizzati in locazioni di memoria adiacenti.
+-Gestione Dinamica: Quando lo spazio finisce,il vector rialloca se stesso in un nuovo blocco di memoria più grande.
+
+Accesso Sicuro: at() vs []
+-vec[i]: Non effettua controlli sui limiti (bounds checking). Più veloce, ma rischioso.
+-vec.at(i): Lancia un'eccezione std::out_of_range se l'indice è errato
+
+Iteratori
+Gli iteratori permettono di scorrere il vector in modo standardizzato.
+-begin() / end(): Puntano al primo elemento e alla posizione successiva all'ultimo.
+-rbegin() / rend(): Per iterare in ordine inverso.
+
+Aggiungere Elementi
+
+Esistono diversi modi per inserire dati, ognuno con scenari d'uso specifici.
+A. In coda: push_back() vs emplace_back()
+-push_back(valore): Aggiunge una copia (o sposta) l'elemento alla fine.
+
+-emplace_back(argomenti...): (C++11) Passa gli argomenti direttamente al costruttore dell'oggetto all'interno della memoria del vector.
+Vantaggio: Evita la creazione di un oggetto temporaneo. È più efficiente per oggetti complessi (es. vector di classi personalizzate).
+
+B. In una posizione specifica: 
+insert()Il vector permette l'inserimento ovunque, ma con un costo:
+-v.insert(it, valore): Inserisce valore prima della posizione indicata dall'iteratore it.Costo: O(n). 
+Tutti gli elementi a destra della posizione d'inserimento devono essere spostati (shiftati) per fare spazio.
+
+Rimuovere Elementi
+
+La rimozione segue logiche simili all'inserimento per quanto riguarda le performance.
+A. In coda pop_back(): 
+-pop_back() Rimuove l'ultimo elemento.Costo: O(1). È l'operazione di rimozione più veloce perché non richiede lo spostamento di altri elementi.
+
+B. In una posizione specifica o intervallo erase(): 
+-v.erase(it): Rimuove l'elemento puntato dall'iteratore.
+-v.erase(it_inizio, it_fine): Rimuove un intero intervallo.Costo: O(n). 
+Gli elementi a destra devono essere spostati a sinistra per chiudere il "buco".
+
+C. Svuotamento totale: clear()
+Rimuove tutti gli elementi.
+Attenzione: La size diventa 0, ma la capacity rimane invariata (la memoria non viene rilasciata al sistema operativo immediatamente).
+
+Accedere al primo e ultimo elemento : front() e back()
+Invece di usare v[0] o v[v.size()-1], queste funzioni rendono il codice più leggibile per accedere al primo e all'ultimo elemento.
+
+.size() --> per sapere quanto è lungo il vector
