@@ -1,0 +1,17 @@
+1. Registro Voti: Crea una classe Studente con nome e un vector<int> per i voti. Implementa un metodo per calcolare la media. 
+Nel main, crea un vector di oggetti Studente e stampa la media di ognuno.
+
+2. Gestore Magazzino: Crea una classe base Prodotto e le derivate Alimentare (con scadenza) e Elettronica (con garanzia).
+ Usa un vector<Prodotto*> per gestire un magazzino tramite polimorfismo, stampando i dettagli di tutti i prodotti con un ciclo.
+
+3. Filtro Numeri: Scrivi un programma che riempie un vector con 20 numeri casuali. Rimuovi tutti i numeri dispari dal vector 
+(usa l'idioma erase-remove o un semplice ciclo con iteratori).
+
+4. Sistema di Navigazione: Rappresenta un percorso come un vector<string> di tappe. Aggiungi funzioni per inserire una tappa in una posizione specifica
+ e per invertire l'intero percorso (std::reverse).
+
+5 . Matrice Dinamica: Crea un vector<vector<int>> che rappresenti una tabella pitagorica (tabelline).
+ Chiedi all'utente la dimensione $N \times N$.
+
+6. Ricerca e Ordinamento: Crea un vector di stringhe. Implementa un menu per: aggiungere una stringa, 
+ordinarle alfabeticamente e cercare se una parola specifica è presente.
