@@ -1,0 +1,17 @@
+1. Dizionario Semplice: Crea un vector<pair<string, string>> che funga da mini-dizionario Italiano-Inglese. 
+Permetti all'utente di cercare una parola italiana e restituire la traduzione.
+
+2. Coordinate 2D: Crea una classe Robot che memorizza la sua posizione come pair<int, int>. 
+Aggiungi metodi per muoverlo (Nord, Sud, Est, Ovest) aggiornando i valori del pair.
+
+3. Classifica Gara: Usa un vector<pair<int, string>> dove il primo elemento è il tempo e il secondo il nome del pilota. 
+Inserisci 5 piloti e usa std::sort per visualizzare la classifica dal più veloce al più lento.
+
+4. Risultato Operazione: Scrivi una funzione dividi che accetta due interi e restituisce un pair<int, bool>. 
+Il booleano indica se l'operazione è riuscita (false se il divisore è 0).
+
+5. Anagrafica Coppie: Crea una classe Persona (nome, età). Usa un pair<Persona, Persona> per rappresentare una coppia di sposi o conviventi.
+ Implementa un metodo che stampa chi dei due è più grande d'età.
+
+6. Mappa delle Distanze: Dato un vector<pair<string, double>> che contiene città e distanza da Roma, 
+scrivi una funzione che restituisce il pair della città più lontana.

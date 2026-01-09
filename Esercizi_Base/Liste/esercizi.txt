@@ -1,0 +1,17 @@
+1. Playlist Musicale: Crea una classe Canzone. Usa una list<Canzone> per simulare una playlist. 
+Implementa funzioni per aggiungere in coda, rimuovere la canzone corrente (in testa) e spostare una canzone in cima alla lista (splice).
+
+2. Cronologia Browser: Simula la cronologia di un browser con una list<string>. 
+Ogni nuovo sito visitato viene aggiunto in testa (push_front). Se la lista supera i 10 elementi, rimuovi l'ultimo (pop_back).
+
+3. Editor di Testo: Rappresenta le righe di un documento come una list<string>. 
+Scrivi un metodo per inserire una nuova riga tra due righe esistenti usando gli iteratori.
+
+4. Elimina Duplicati: Riempi una lista con numeri interi, inclusi molti duplicati. 
+Ordina la lista (sort) e usa il metodo unique() per ripulirla. Stampa la dimensione finale.
+
+5. Gestione Coda Ospedaliera: Crea una classe Paziente con un livello di urgenza (Codice Rosso, Giallo, Bianco). 
+Usa una lista e inserisci i codici rossi sempre in testa e i bianchi in coda.
+
+6. Polimorfismo in Lista: Crea una classe base Animale con metodo virtuale verso(). 
+Crea derivate Cane e Gatto. Inserisci vari animali in una list<Animale*> e falli "cantare" tutti insieme scorrendo la lista.
