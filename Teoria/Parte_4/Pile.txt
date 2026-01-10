@@ -1,0 +1,49 @@
+Cos'è 
+Pile o Stack è una struttura dati lineare che segue l'ordine LIFO (Last-In-First-Out).
+Questo significa che l'ultimo elemento inserito è il primo a essere rimosso.
+Caratteristiche principali:
+-Punto di accesso unico: Tutte le operazioni di inserimento e rimozione avvengono da un'unica estremità, chiamata Top (cima).
+-Dimensione: Può essere fissa (array) o dinamica (liste concatenate o vettori).
+
+Operazioni fondamentali 
+
+Operazioni Fondamentali
+Secondo gli standard C++, una pila deve supportare queste operazioni con complessità temporale O(1):
+-push(): Inserisce un elemento in cima alla pila.
+-pop(): Rimuove l'elemento in cima.
+-top() (o peek): Restituisce l'elemento in cima senza rimuoverlo.
+-empty(): Restituisce true se la pila è vuota.
+-size(): Restituisce il numero di elementi presenti.
+
+Utilizzo della Standard Template Library (STL)
+
+-si deve include l'header <stack> : #include <stack>
+{
+    #include <iostream>
+    #include <stack>
+
+    int main() {
+        std::stack<int> s;
+        s.push(10);
+        s.push(20);
+        
+        std::cout << "Top: " << s.top() << std::endl; // Output: 20
+        s.pop();
+        std::cout << "Nuovo Top: " << s.top() << std::endl; // Output: 10
+        
+        return 0;
+    }
+}
+
+Applicazioni Pratiche
+Le pile non sono solo teoria; sono ovunque nel software:
+-Gestione delle chiamate a funzione: Quando una funzione ne chiama un'altra, i parametri e l'indirizzo di ritorno vengono salvati nello Stack di sistema.
+-Inversione di dati: Inserendo una stringa in una pila e svuotandola, si ottiene la stringa al contrario.
+-Undo/Redo: Nei software di editing, ogni azione viene "pushato" in una pila.
+-Parsing di Espressioni: Conversione da Infix a Postfix (notazione polacca inversa) e valutazione delle espressioni matematiche.
+-Backtracking: Algoritmi di risoluzione labirinti o puzzle (come il Sudoku).
+
+Casi Particolari e Errori Comuni
+-Stack Underflow: Accade quando si prova a fare pop() o top() su una pila vuota. È fondamentale controllare sempre empty() prima di queste operazioni.
+-Stack Overflow: In un'implementazione basata su array, accade quando si prova a fare push() oltre il limite. 
+Nello stack di sistema, accade spesso con ricorsioni infinite.

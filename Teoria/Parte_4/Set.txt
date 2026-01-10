@@ -1,0 +1,53 @@
+Cos'È
+Un std::set è un contenitore che garantisce due proprietà fondamentali:
+-Unicità: Non possono esserci due elementi uguali. Se provi a inserire un duplicato, l'operazione viene ignorata.
+-Ordinamento: Gli elementi vengono inseriti e mantenuti automaticamente in ordine (di default crescente).
+
+A differenza di vettori o liste, std::set è solitamente implementato come un Albero Binario di Ricerca Bilanciato (quasi sempre un Red-Black Tree).
+
+Operazioni Fondamentali e Complessità
+Grazie alla struttura ad albero, le operazioni principali non sono O(1) come nelle pile, ma O(\log n):
+-insert(): Inserisce un elemento mantenendo l'ordine.erase(): Rimuove un elemento specifico.
+-find(): Cerca un elemento. Se esiste, restituisce un iteratore ad esso, altrimenti restituisce end().
+-count(): Restituisce 1 se l'elemento esiste, 0 altrimenti (utile per verificare la presenza).
+-lower_bound() / upper_bound(): Utili per trovare range di valori.
+
+La STL offre diverse versioni del set a seconda delle necessità:
+
+set --> red black tree
+multiset   --> red black Tree
+unordered set --> hash table
+unordered multi set --> hash table
+
+Ecco come gestire un set per filtrare i duplicati e mantenere l'ordine:
+va incluso nell'header : #include <set>
+{
+    #include <iostream>
+    #include <set>
+
+    int main() {
+        std::set<int> numeri;
+
+        numeri.insert(40);
+        numeri.insert(10);
+        numeri.insert(40); // Duplicato: verrà ignorato
+        numeri.insert(25);
+
+        // La stampa sarà automatica: 10 25 40
+        for (int n : numeri) {
+            std::cout << n << " ";
+        }
+
+        if (numeri.find(25) != numeri.end()) {
+            std::cout << "\nIl 25 è presente!";
+        }
+
+        return 0;
+    }
+}
+
+Quando usare i Set?
+I set sono ideali in scenari specifici:
+-Rimozione duplicati: Passare un std::vector dentro un std::set è il modo più rapido per eliminare i doppioni.
+-Verifica di appartenenza: Sapere rapidamente se un elemento fa parte di un gruppo (es. blacklist di utenti).
+-Dati costantemente ordinati: Se hai bisogno di estrarre sempre il valore minimo o massimo o navigare i dati in ordine alfabetico/numerico.

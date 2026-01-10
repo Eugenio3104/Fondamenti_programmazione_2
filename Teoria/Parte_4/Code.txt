@@ -1,0 +1,72 @@
+Cos'È
+La coda è una struttura dati lineare che segue l'ordine FIFO (First-In-First-Out): il primo elemento inserito è il primo a essere rimosso.
+Punti di accesso: A differenza della pila, la coda ha due estremità aperte:
+-Back: Dove si aggiungono gli elementi.
+-Front: Da dove si rimuovono gli elementi.
+
+Operazioni Fondamentali
+Anche per le code, le operazioni principali devono avere una complessità temporale O(1):
+-push() (o enqueue): Inserisce un elemento alla fine .
+-pop() (o dequeue): Rimuove l'elemento all'inizio (Front).
+-front(): Restituisce l'elemento in testa senza rimuoverlo.
+-back(): Restituisce l'ultimo elemento inserito.
+-empty():Controllano se è vuota 
+-size():  e quanti elementi contiene.
+
+Utilizzo della STL
+va incluso nell'header : #include <queue>
+{
+    #include <iostream>
+    #include <queue>
+
+    int main() {
+        std::queue<std::string> q;
+
+        q.push("Primo");   // Entra per primo
+        q.push("Secondo");
+        q.push("Terzo");
+
+        std::cout << "In testa: " << q.front() << std::endl; // Output: Primo
+        std::cout << "In coda: " << q.back() << std::endl;   // Output: Terzo
+
+        q.pop(); // Rimuove "Primo"
+        std::cout << "Nuova testa: " << q.front() << std::endl; // Output: Secondo
+
+        return 0;
+    }
+}
+
+Tipi Particolari di Code
+Oltre alla coda semplice, esistono varianti fondamentali:
+-Deque (Double-Ended Queue): Una coda dove puoi inserire e rimuovere elementi da entrambi i lati. In C++ è implementata come std::deque.
+-Priority Queue (Coda di Priorità): Gli elementi non escono in ordine di arrivo, ma in base a una priorità (es. un pronto soccorso). In C++: std::priority_queue.
+
+Applicazioni Pratiche
+Le code sono vitali nei sistemi operativi e nelle reti:
+-Scheduling dei processi: Il sistema operativo usa code per gestire i processi che attendono l'uso della CPU.
+-Gestione della memoria Buffer: Ad esempio, il buffer della tastiera o della stampante (i documenti vengono stampati nell'ordine in cui arrivano).
+-Algoritmi sui Grafi (BFS): La ricerca in ampiezza (Breadth-First Search) usa una coda per esplorare i nodi livello per livello.
+
+Deque (Double-Ended Queue) : È una coda "a due uscite"
+Puoi inserire e rimuovere elementi con la stessa efficienza (O(1)) sia dal fronte che dal retro.
+A differenza di std::vector, che usa un unico blocco di memoria contiguo, la std::deque usa un insieme di blocchi di memoria collegati.
+ Questo le permette di crescere senza dover ricopiare l'intero contenuto ogni volta che si esaurisce lo spazio.
+
+Operazioni chiave:
+-push_front() / pop_front()
+-push_back() / pop_back()
+-Accesso casuale con [] (come un vettore).
+
+
+Priority Queue (Coda di Priorità)
+Non è una coda FIFO standard. È un adattatore di contenitore che organizza gli elementi in modo che quello con la priorità più alta sia sempre in cima.
+
+-Logica: Immagina una sala d'attesa di un pronto soccorso: non passa chi è arrivato prima, ma chi ha il "codice rosso".
+-Comportamento di Default: In C++, la std::priority_queue è un Max-Heap. Questo significa che l'elemento più grande (secondo l'operatore <) viene servito per primo.
+-Complessità: L'inserimento (push) e la rimozione (pop) richiedono tempo logaritmico O(\log n), 
+perché la struttura deve riorganizzarsi per mantenere l'ordine di priorità.
+
+Operazioni chiave:
+-push(): Inserisce un elemento.
+-pop(): Rimuove l'elemento con priorità massima.
+-top(): Guarda l'elemento con priorità massima (non esiste front() o back()).

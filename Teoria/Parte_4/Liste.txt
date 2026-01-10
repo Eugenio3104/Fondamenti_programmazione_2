@@ -2,7 +2,8 @@ Cos'è
 In C++, std::list è implementata come una lista doppiamente concatenata (doubly linked list). 
 Ogni elemento è un nodo separato che contiene il dato e due puntatori: uno al nodo precedente e uno al successivo.
 
-Caratteristiche FondamentaliA differenza del vector, la lista non occupa un blocco di memoria contiguo.
+Caratteristiche Fondamentali
+A differenza del vector, la lista non occupa un blocco di memoria contiguo.
 -Memoria non contigua: Ogni elemento può trovarsi ovunque nella memoria.
 -Inserimento/Rimozione Rapidi: Aggiungere o togliere elementi in qualsiasi punto costa sempre O(1) (se hai già l'iteratore).
 -Nessun Accesso Casuale: Non puoi fare lista[5]. Per arrivare al quinto elemento, devi scorrere i primi quattro.
